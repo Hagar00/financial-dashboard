@@ -1,7 +1,7 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-function ChartModal({ modalTitle, modalData }) {
+function ChartModal({ modalTitle, modalData, lang }) {
   const chartOptions = {
     chart: { type: "column" },
     title: { text: modalTitle },
@@ -29,8 +29,18 @@ function ChartModal({ modalTitle, modalData }) {
     >
       <div className="modal-dialog modal-lg modal-dialog-centered">
         <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">{modalTitle}</h5>
+          <div
+            className={`modal-header d-flex ${
+              lang === "ar" ? "flex-row-reverse" : "flex-row"
+            }`}
+          >
+            <h5
+              className={`modal-title ${
+                lang === "ar" ? "text-end" : "text-start"
+              } flex-grow-1`}
+            >
+              {modalTitle}
+            </h5>
             <button
               type="button"
               className="btn-close"

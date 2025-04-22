@@ -7,6 +7,8 @@ import ChartModal from "./components/ChartModal";
 // Import Bootstrap CSS and JavaScript
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./App.css";
 import * as bootstrap from "bootstrap";
 window.bootstrap = bootstrap;
 
@@ -31,17 +33,18 @@ function App() {
   }, [lang]);
 
   return (
-    <div className="">
+    <div>
       <Navbar lang={lang} setLang={setLang} />
-      <div className="mx-auto">
-        <FinancialAccordion
-          data={data.financialRatioFieldsGroups}
-          lang={lang}
-          handleShowChart={handleShowChart}
-        />
+      <div className="container">
+        <div className="mx-auto">
+          <FinancialAccordion
+            data={data.financialRatioFieldsGroups}
+            lang={lang}
+            handleShowChart={handleShowChart}
+          />
+        </div>
+        <ChartModal modalData={modalData} modalTitle={modalTitle} lang={lang} />
       </div>
-
-      <ChartModal modalData={modalData} modalTitle={modalTitle} />
     </div>
   );
 }

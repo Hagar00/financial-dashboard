@@ -5,42 +5,47 @@ function FinancialTable({ fields, lang, handleShowChart }) {
   const yearsRange = ["2022", "2021", "2020", "2019"];
 
   return (
-    <table className="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>{t("name")}</th>
-          {yearsRange.map((year) => (
-            <th key={year}>{year}</th>
-          ))}
-          <th>{t("details")}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {fields.map((field, i) => (
-          <tr key={i}>
-            <td>{lang === "en" ? field.nameEn : field.nameAr}</td>
-            {yearsRange.map((year) => {
-              const val = field.values.find((v) => v.year === year);
-              return (
-                <td key={year}>
-                  {val && val.value !== "-"
-                    ? parseFloat(val.value).toFixed(2)
-                    : "-"}
-                </td>
-              );
-            })}
-            <td>
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={() => handleShowChart(field)}
-              >
-                {t("showChart")}
-              </button>
-            </td>
+    <div className="table-responsive">
+      <table className="table table-bordered table-striped">
+        <thead className="table-dark">
+          <tr>
+            <th>{t("name")}</th>
+            {yearsRange.map((year) => (
+              <th key={year}>{year}</th>
+            ))}
+            <th>{t("details")}</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {fields.map((field, i) => (
+            <tr key={i}>
+              <td className="fw-semibold text-primary">
+                {lang === "en" ? field.nameEn : field.nameAr}
+              </td>
+              {yearsRange.map((year) => {
+                const val = field.values.find((v) => v.year === year);
+                return (
+                  <td key={year} className="text-center">
+                    {val && val.value !== "-"
+                      ? parseFloat(val.value).toFixed(2)
+                      : "-"}
+                  </td>
+                );
+              })}
+              <td className="text-center">
+                <button
+                  className="btn btn-sm"
+                  onClick={() => handleShowChart(field)}
+                  title={t("show Chart")}
+                >
+                  <i className="fa-solid fa-chart-simple bg-light text-dark px-3 py-2 rounded fs-5"></i>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
