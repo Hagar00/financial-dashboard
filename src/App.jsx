@@ -10,6 +10,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
 import * as bootstrap from "bootstrap";
+import Footer from "./components/Footer";
 window.bootstrap = bootstrap;
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         </div>
         <ChartModal modalData={modalData} modalTitle={modalTitle} lang={lang} />
       </div>
+      <Footer />
     </div>
   );
 }

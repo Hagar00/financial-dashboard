@@ -1,8 +1,14 @@
 import { useTranslation } from "react-i18next";
+import i18n from "../i18n/index";
+import { useEffect } from "react";
 
 function FinancialTable({ fields, lang, handleShowChart }) {
   const { t } = useTranslation();
   const yearsRange = ["2022", "2021", "2020", "2019"];
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
 
   return (
     <div className="table-responsive">
