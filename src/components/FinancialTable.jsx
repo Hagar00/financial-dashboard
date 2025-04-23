@@ -6,8 +6,8 @@ function FinancialTable({ fields, lang, handleShowChart }) {
 
   return (
     <div className="table-responsive">
-      <table className="table table-bordered table-striped">
-        <thead className="table-dark">
+      <table className="table  table-striped">
+        <thead className="table-secondary ">
           <tr>
             <th>{t("name")}</th>
             {yearsRange.map((year) => (
@@ -24,15 +24,25 @@ function FinancialTable({ fields, lang, handleShowChart }) {
               </td>
               {yearsRange.map((year) => {
                 const val = field.values.find((v) => v.year === year);
+                const number =
+                  val && val.value !== "-" ? parseFloat(val.value) : null;
+
                 return (
-                  <td key={year} className="text-center">
-                    {val && val.value !== "-"
-                      ? parseFloat(val.value).toFixed(2)
-                      : "-"}
+                  <td
+                    key={year}
+                    className={` ${
+                      number > 0
+                        ? "text-success fw-semibold"
+                        : number < 0
+                        ? "text-danger fw-semibold"
+                        : ""
+                    }`}
+                  >
+                    {number !== null ? number.toFixed(2) : "-"}
                   </td>
                 );
               })}
-              <td className="text-center">
+              <td className="">
                 <button
                   className="btn btn-sm"
                   onClick={() => handleShowChart(field)}
